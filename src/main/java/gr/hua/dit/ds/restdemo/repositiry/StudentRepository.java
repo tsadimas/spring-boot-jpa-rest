@@ -1,10 +1,12 @@
 package gr.hua.dit.ds.restdemo.repositiry;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import gr.hua.dit.ds.restdemo.entity.Student;
 
-@Repository
+
+import gr.hua.dit.ds.restdemo.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+@RepositoryRestResource(path="students")
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 	
 }
