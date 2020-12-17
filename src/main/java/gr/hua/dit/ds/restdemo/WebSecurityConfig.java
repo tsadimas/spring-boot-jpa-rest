@@ -30,15 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests() // authorize
-                .antMatchers("/").permitAll() // allow "/" to be seen without authentication
-                .anyRequest().authenticated() // all requests are authenticated
-                .and()
-                .formLogin().permitAll() //allow "/login"
-                //.defaultSuccessUrl("/", true) // set default page for success login
-                .and()
-                .logout().permitAll(); // allow "logout"
+        http.httpBasic().and().authorizeRequests()
+                .antMatchers("/**").hasRole("ADMIN")
+                .and().csrf().disable().headers().frameOptions().disable();
     }
 
     @Bean
